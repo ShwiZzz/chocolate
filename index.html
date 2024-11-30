@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Сайт для вопросов и ответов</title>
+</head>
+<body>
+<li><a href="https://ru.wikipedia.org/wiki/Python">Все о python можно узнать здесь</a></li>
+<p><img src="p1_2695441_6307a7be.jpg" alt=Пайтон" width="500" height=350" float:left margin-bottom:5px
+</p>
+<div class="commentf">
+    <table>
+        <tbody>
+             <FORM action="submit.html" method="post">
+                <tr>
+                    <td><LABEL for="name">Name: </LABEL>
+                              <INPUT type="text" id="name"></td>
+                </tr>
+                <tr>
+                    <td><LABEL for="email">E-Mail: </LABEL>
+                               <INPUT type="text" id="email"></td>
+                </tr>
+                <tr>
+                    <td><LABEL for="subject">Subject: </LABEL>
+                              <INPUT type="text" id="subject"></td>
+                </tr>
+                <tr>
+                    <td><LABEL for="comment">Text: </LABEL>
+                              <TEXTAREA type="text" id="comment">Comment:</TEXTAREA></td>
+                </tr>
+                <tr>
+                    <td><INPUT type="submit" value="Submit"> <INPUT type="reset"></td>
+                </tr>
+            </FORM>
+        </tbody>
+    </table>
+</div>
+
+<?php
+        if(isset($_POST['name']) && isset($_POST['email'] && isset ($_POST['subject'] && isset ($_POST['comment'])))) {
+        $data = $_POST['name'] . '-' . $_POST['email'] . '-' . $_POST['subject'] . '-' . $_POST['comment'] . "\n";
+        $ret = file_put_contents('HAS.txt', $data, FILE_APPEND | LOCK_EX);
+        if($ret === false) {
+        die('There was an error writing this file');
+    }
+    else {
+        echo "$ret bytes written to file";
+    }
+}
+else {
+   die('no post data to process');
+}
+
+
+/b> <?php echo $_POST['name']; ?> <INPUT type="text" id="name">
+                    <br>E-Mail:</b> <?php echo $_POST['email']; ?> <INPUT type="text" id="email">
+                    <br>Subject:</b> <?php echo $_POST['subject']; ?> <INPUT type="text" id="subject">
+                    <br>Comment:</b> <?php echo $_POST['comment']; ?> <TEXTAREA type="text" id="comment"></TEXTAREA>
+             </FORM>
+
+</body>
+</html>
